@@ -12,11 +12,13 @@
 <meta name="robots" content="index, follow">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%23ff5a36%22/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 
 </head>
 <body>
+<div class="bg-orbs"><span></span><span></span><span></span></div>
+<div class="bg-strip"></div>
 <header class="site">
   <div class="nav-row">
     <a class="brand" href="index.html"><span class="mark"></span>Workbench</a>
@@ -50,14 +52,15 @@
     </div>
     <div class="search-bar">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-      <input type="text" id="searchInput" placeholder="Search a tool — e.g. 'compress pdf'" oninput="filterTools(this.value)">
+      <input type="text" id="searchInput" placeholder="Search a tool — e.g. 'compress pdf'" oninput="filterTools(this.value)" onkeydown="if(event.key==='Enter'){event.preventDefault(); document.getElementById('tool-grid-anchor').scrollIntoView({behavior:'smooth'});}">
+      <button type="button" onclick="document.getElementById('tool-grid-anchor').scrollIntoView({behavior:'smooth'})">Search</button>
     </div>
   </div>
 </section>
 
 <div class="ad-slot"><div class="box">ad space — leaderboard banner</div></div>
 
-<section class="section">
+<section class="section" id="tool-grid-anchor">
   <div class="wrap">
     <div class="section-head">
       <div>
@@ -107,18 +110,18 @@
       </div>
     </div>
     <div class="cat-grid">
-      <div class="cat-card">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="cat-card" style="text-align:center;">
+        <div class="icon" style="margin:0 auto 18px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <h3>Private by design</h3>
         <p>Files are processed locally using your browser's own engine — they're never sent anywhere.</p>
       </div>
-      <div class="cat-card">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
+      <div class="cat-card" style="text-align:center;">
+        <div class="icon" style="margin:0 auto 18px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
         <h3>Instant</h3>
         <p>No upload wait, no queue — processing starts the moment you choose a file.</p>
       </div>
-      <div class="cat-card">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+      <div class="cat-card" style="text-align:center;">
+        <div class="icon" style="margin:0 auto 18px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
         <h3>Always free</h3>
         <p>No sign-up, no subscriptions, no file limits hidden behind a paywall.</p>
       </div>
