@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Text Tools — Word Counter, Case Converter & Text Compare</title>
+<meta name="description" content="Free online text tools: word and character counter, case converter, and text comparison. No sign-up, runs entirely in your browser.">
+<link rel="canonical" href="https://workbench.example.com/text-tools.html">
+<meta property="og:title" content="Free Text Tools — Word Counter, Case Converter & Text Compare">
+<meta property="og:description" content="Free online text tools: word and character counter, case converter, and text comparison. No sign-up, runs entirely in your browser.">
+<meta property="og:type" content="website">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%23ff5a36%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+<header class="site">
+  <div class="nav-row">
+    <a class="brand" href="index.html"><span class="mark"></span>Workbench</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="pdf-tools.html" class="">PDF Tools</a>
+      <a href="image-tools.html" class="">Image Tools</a>
+      <a href="text-tools.html" class="active">Text Tools</a>
+      <a href="generators.html" class="">Generators</a>
+      <a href="about.html" class="">About</a>
+    </nav>
+    <div class="nav-right">
+      <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        <svg id="iconSun" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap" style="padding-top:28px;">
+  <div class="breadcrumb"><a href="index.html">Home</a> / Text Tools</div>
+  <h1 style="font-size:32px;">Text Tools</h1>
+  <p style="color:var(--muted); margin-top:8px; max-width:560px;">Count words, change casing, and compare two pieces of text — instantly, with no upload.</p>
+</div>
+
+<div class="ad-slot" style="margin-top:24px;"><div class="box">ad space — leaderboard banner</div></div>
+
+<section class="section" style="padding-top:24px;">
+  <div class="wrap">
+
+    <div class="workspace">
+      <span class="cat-label" style="margin-top:0;">Tool 07</span>
+      <h2>Word Counter</h2>
+      <p class="sub">Live stats as you type or paste text.</p>
+      <textarea id="wcText" placeholder="Paste or type text here..." oninput="updateWordCount()"></textarea>
+      <div class="stat-row">
+        <div class="stat"><b id="wcWords">0</b><span>words</span></div>
+        <div class="stat"><b id="wcChars">0</b><span>characters</span></div>
+        <div class="stat"><b id="wcSentences">0</b><span>sentences</span></div>
+        <div class="stat"><b id="wcReadTime">0s</b><span>read time</span></div>
+      </div>
+    </div>
+
+    <div class="workspace" style="margin-top:24px;">
+      <span class="cat-label" style="margin-top:0;">Tool 08</span>
+      <h2>Case Converter</h2>
+      <p class="sub">Transform text casing instantly.</p>
+      <textarea id="caseText" placeholder="Type or paste text..."></textarea>
+      <div class="row" style="margin-top:16px;">
+        <button class="btn btn-ghost btn-sm" onclick="convCase('upper')">UPPER CASE</button>
+        <button class="btn btn-ghost btn-sm" onclick="convCase('lower')">lower case</button>
+        <button class="btn btn-ghost btn-sm" onclick="convCase('title')">Title Case</button>
+        <button class="btn btn-ghost btn-sm" onclick="convCase('sentence')">Sentence case</button>
+      </div>
+    </div>
+
+    <div class="workspace" style="margin-top:24px;">
+      <span class="cat-label" style="margin-top:0;">Tool 09</span>
+      <h2>Text Compare</h2>
+      <p class="sub">Paste two texts to see word-level differences.</p>
+      <div class="field" style="margin-top:0;"><label>Text A</label><textarea id="diffA" style="min-height:90px;"></textarea></div>
+      <div class="field"><label>Text B</label><textarea id="diffB" style="min-height:90px;"></textarea></div>
+      <button class="btn btn-primary" onclick="runDiff()" style="margin-top:18px;">Compare</button>
+      <div class="result" id="diffResult" style="line-height:1.8;"></div>
+    </div>
+
+    <div class="howto">
+      <h2>How to count words online</h2>
+      <ol>
+        <li>Paste or type your text into the Word Counter box.</li>
+        <li>Word, character and sentence counts update live as you type.</li>
+        <li>Estimated read time is calculated automatically based on average reading speed.</li>
+      </ol>
+    </div>
+
+    <div class="faq">
+      <h2 style="font-size:22px; margin-bottom:14px;">Frequently asked questions</h2>
+      <details><summary>Is my text stored or sent anywhere?</summary><p>No. All text tools run entirely in your browser using JavaScript — nothing is transmitted or saved.</p></details>
+      <details><summary>Does Text Compare check for plagiarism?</summary><p>It highlights word-level differences between two texts you provide; it does not search the internet for matches.</p></details>
+    </div>
+
+  </div>
+</section>
+<footer class="site">
+  <div class="foot-grid">
+    <div>
+      <a class="brand" href="index.html"><span class="mark"></span>Workbench</a>
+      <p style="font-size:13.5px; color:var(--muted); margin-top:12px; max-width:240px;">Free browser-based PDF, image and text tools. Nothing you upload ever leaves your device.</p>
+    </div>
+    <div>
+      <h4>Tools</h4>
+      <a href="pdf-tools.html">PDF Tools</a>
+      <a href="image-tools.html">Image Tools</a>
+      <a href="text-tools.html">Text Tools</a>
+      <a href="generators.html">Generators</a>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© <span id="year"></span> Workbench. All rights reserved.</span>
+    <span>Built for the open web — no tracking, no sign-up.</span>
+  </div>
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="assets/main.js"></script>
+
+</body>
+</html>
